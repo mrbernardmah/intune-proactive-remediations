@@ -1,0 +1,13 @@
+﻿# Perform a quick scan using Microsoft Defender
+Start-MpScan -ScanType QuickScan
+ 
+# Check the scan results
+$scanResults = Get-MpThreatDetection
+ 
+if ($scanResults) {
+    Write-Output "Malware detected: $($scanResults.ThreatName)"
+    exit 1
+} else {
+    Write-Output "No malware detected."
+    exit 0
+}
